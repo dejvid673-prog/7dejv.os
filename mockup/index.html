@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interaktywna makieta etapu 1 panelu operacyjnego 7DEJV.os">
+  <title>7DEJV.os — makieta etapu 1</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell" id="appShell">
+    <aside class="sidebar" aria-label="Główna nawigacja">
+      <div class="brand">
+        <div class="brand-mark">7D</div>
+        <div>
+          <strong>7DEJV.os</strong>
+          <span>Operations workspace</span>
+        </div>
+      </div>
+
+      <nav class="main-nav" id="mainNav">
+        <button class="nav-item is-active" data-module="dashboard" type="button">
+          <span class="nav-icon">⌂</span>
+          <span>Dashboard</span>
+          <span class="nav-count" id="dashboardNavCount">4</span>
+        </button>
+        <button class="nav-item" data-module="orders" type="button">
+          <span class="nav-icon">▤</span>
+          <span>Zamówienia</span>
+          <span class="nav-count">12</span>
+        </button>
+        <button class="nav-item" data-module="packing" type="button">
+          <span class="nav-icon">□</span>
+          <span>Pakowanie</span>
+          <span class="nav-count">3</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-note">
+        <span class="demo-dot"></span>
+        <div>
+          <strong>Tryb demonstracyjny</strong>
+          <span>Brak połączeń z API</span>
+        </div>
+      </div>
+
+      <div class="user-card">
+        <div class="avatar">D</div>
+        <div>
+          <strong>Administrator</strong>
+          <span>Makieta etapu 1</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="topbar-heading">
+          <span class="eyebrow">Centrum operacyjne</span>
+          <h1 id="moduleTitle">Dashboard</h1>
+        </div>
+        <div class="topbar-actions">
+          <label class="global-search">
+            <span class="sr-only">Szukaj</span>
+            <input id="globalSearch" type="search" placeholder="Szukaj zamówienia lub klienta…" autocomplete="off">
+          </label>
+          <button class="icon-button" type="button" id="openTopAlert" title="Otwórz najpilniejsze zgłoszenie">!</button>
+        </div>
+      </header>
+
+      <nav class="subnav" id="subnav" aria-label="Podzakładki aktualnego modułu"></nav>
+
+      <section class="workspace-tabs" aria-label="Karty robocze">
+        <div class="workspace-tabs-list" id="workspaceTabs"></div>
+        <button class="tabs-overview" id="tabsOverview" type="button" title="Lista otwartych kart">⌄</button>
+      </section>
+
+      <section class="workspace" id="workspace" aria-live="polite"></section>
+    </main>
+
+    <aside class="agent-panel is-open" id="agentPanel" aria-label="Panel agentów">
+      <header class="agent-panel-header">
+        <div>
+          <span class="eyebrow">Kolejka koordynatora</span>
+          <h2>Agenci</h2>
+        </div>
+        <div class="agent-panel-controls">
+          <button class="icon-button" id="toggleAgentPin" type="button" aria-pressed="false" title="Przypnij panel">◇</button>
+          <button class="icon-button" id="toggleAgentPanel" type="button" title="Zwiń panel">›</button>
+        </div>
+      </header>
+
+      <div class="agent-panel-body">
+        <div class="agent-summary" id="agentSummary"></div>
+        <div class="agent-queue-toolbar">
+          <strong>Zgłoszenia</strong>
+          <select id="agentFilter" aria-label="Filtruj zgłoszenia według agenta">
+            <option value="all">Wszyscy agenci</option>
+          </select>
+        </div>
+        <div class="agent-queue" id="agentQueue"></div>
+        <div class="agent-conversation" id="agentConversation"></div>
+      </div>
+    </aside>
+
+    <button class="agent-panel-rail" id="agentPanelRail" type="button" aria-label="Otwórz panel agentów">
+      <span>AI</span>
+      <strong id="agentRailCount">4</strong>
+    </button>
+  </div>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
