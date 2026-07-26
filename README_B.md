@@ -25,6 +25,7 @@ Gałąź wskazuje zaakceptowany stan panelu sprzed korekt. Instrukcja bezpieczne
 - `mockup/index.html`
 - `mockup/prompt-alignment.css`
 - `mockup/prompt-alignment.js`
+- `mockup/README.md`
 - `stages/stage-01-mockup/BACKUP.md`
 - `stages/stage-01-mockup/PROMPT_ALIGNMENT_REVIEW.md`
 - `stages/stage-01-mockup/TEST_REPORT.md`
@@ -53,6 +54,7 @@ Gałąź wskazuje zaakceptowany stan panelu sprzed korekt. Instrukcja bezpieczne
 - zgłoszenie prowadzi do powiązanego zamówienia `#10542`,
 - dodano kompaktowy przegląd kilku agentów,
 - dodano demonstracyjnego agenta obsługi klienta do filtra,
+- poprawiono zachowanie filtra agenta klienta po przebudowie kolejki przez bazowy skrypt,
 - ujednolicono liczniki po dodaniu zgłoszenia klienta,
 - poprawiono widoczny fokus klawiatury i etykiety dostępności przycisków.
 
@@ -90,7 +92,7 @@ Elementy te należą do późniejszych etapów i nie powinny obecnie powstawać 
 
 - potwierdzono odczyt zaakceptowanego `mockup/index.html` z gałęzi kopii zapasowej,
 - potwierdzono odwołania bieżącego `index.html` do obu plików CSS i obu plików JavaScript,
-- wykonano `node --check` dla bieżącej zawartości `prompt-alignment.js` — brak błędów składniowych,
+- wykonano `node --check` dla końcowej zawartości `prompt-alignment.js` po poprawie filtra — brak błędów składniowych,
 - sprawdzono statycznie kolejność dodatkowego zgłoszenia i jego powiązanie z zamówieniem,
 - sprawdzono statycznie spójność liczników: 5 otwartych, 1 krytyczne, 4 pilne,
 - porównano wynik z pierwotnym promptem i `ACCEPTANCE.md`.
