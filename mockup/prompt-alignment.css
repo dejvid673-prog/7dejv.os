@@ -49,13 +49,20 @@
   box-shadow: 0 0 0 2px var(--warning-soft);
 }
 
-.agent-ticket.is-customer-report {
+.agent-ticket.is-customer-report,
+.issue-row.is-customer-report {
   border-left: 3px solid var(--primary);
   background: #fbfdff;
 }
 
-.agent-ticket.is-customer-report:hover {
+.agent-ticket.is-customer-report:hover,
+.issue-row.is-customer-report:hover {
   background: var(--primary-soft);
+}
+
+.issue-row.is-customer-report:focus-visible {
+  position: relative;
+  z-index: 1;
 }
 
 button:focus-visible,
