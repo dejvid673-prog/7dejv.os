@@ -1,0 +1,106 @@
+/* Szkielet dodatkowych modułów głównych 7DEJV.os. */
+.main-nav {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 2px;
+  margin-bottom: 8px;
+}
+
+.sidebar-note {
+  flex: 0 0 auto;
+  margin-top: 8px;
+}
+
+.nav-item[data-extension-module] {
+  position: relative;
+}
+
+.nav-item[data-extension-module]::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #64748b;
+  justify-self: end;
+}
+
+.nav-item[data-extension-module].is-active::after {
+  background: #8fb0ff;
+  box-shadow: 0 0 0 3px #8fb0ff22;
+}
+
+.module-placeholder {
+  display: grid;
+  gap: 14px;
+}
+
+.module-placeholder-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.module-placeholder-status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--warning);
+}
+
+.module-placeholder-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.module-placeholder-card {
+  min-height: 170px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 2px 12px #1d2b4408;
+}
+
+.module-placeholder-card h3 {
+  margin: 0 0 9px;
+  font-size: 13px;
+}
+
+.module-placeholder-card p,
+.module-placeholder-card li {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.module-placeholder-card ul {
+  margin: 0;
+  padding-left: 17px;
+}
+
+.module-placeholder-card strong {
+  display: block;
+  margin-top: 14px;
+  color: var(--text);
+  font-size: 10px;
+}
+
+@media (max-width: 1280px) {
+  .module-placeholder-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .module-placeholder-card {
+    min-height: auto;
+  }
+}
