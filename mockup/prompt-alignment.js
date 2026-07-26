@@ -98,19 +98,7 @@
     filter.appendChild(option);
   }
 
-  function ensureCustomerReportInAgentQueue() {
-    const queue = document.getElementById("agentQueue");
-    const filter = document.getElementById("agentFilter");
-    if (!queue || !filter) return;
-
-    const existing = document.getElementById("customerReportTicket");
-    const shouldShow = filter.value === "all" || filter.value === "client";
-    if (!shouldShow) {
-      existing?.remove();
-      return;
-    }
-    if (existing) return;
-
+  function createCustomerQueueTicket() {
     const ticket = document.createElement("button");
     ticket.id = "customerReportTicket";
     ticket.type = "button";
@@ -124,7 +112,23 @@
         <span>Agent obsługi klienta · #10542 · 7 min · demo</span>
       </div>
     `;
+    return ticket;
+  }
 
+  function ensureCustomerReportInAgentQueue() {
+    const queue = document.getElementById("agentQueue");
+    const filter = document.getElementById("agentFilter");
+    if (!queue || !filter) return;
+
+    const existing = document.getElementById("customerReportTicket");
+    const shouldShow = filter.value === "all" || filter.value === "client";
+    if (!shouldShow) {
+      existing?.remove();
+      return;
+    }
+    if (existing) return;
+
+    const ticket = createCustomerQueueTicket();
     const lowerPriorityTicket = [...queue.querySelectorAll(".agent-ticket")]
       .find(item => Number(item.querySelector(".priority-score")?.textContent || 0) < 78);
 
@@ -191,8 +195,29 @@
     window.requestAnimationFrame(applyCorrections);
   }
 
+  function handleAgentFilter(event) {
+    if (event.target.value !== "client") {
+      scheduleCorrections();
+      return;
+    }
+
+    event.stopImmediatePropagation();
+    const queue = document.getElementById("agentQueue");
+    if (queue) {
+      queue.innerHTML = "";
+      queue.appendChild(createCustomerQueueTicket());
+    }
+  }
+
   const observer = new MutationObserver(scheduleCorrections);
   observer.observe(document.body, { childList: true, subtree: true, characterData: true });
-  document.getElementById("agentFilter")?.addEventListener("change", scheduleCorrections);
+  document.getElementById("agentFilter")?.addEventListener("change", handleAgentFilter, true);
+  document.addEventListener("keydown", event => {
+    const customerReport = event.target.closest?.("#dashboardCustomerReport");
+    if (customerReport && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault();
+      customerReport.click();
+    }
+  });
   scheduleCorrections();
 })();
