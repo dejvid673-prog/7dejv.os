@@ -230,8 +230,9 @@
     widgets.forEach((node, id) => {
       node.dataset.widgetColor = PALETTE.includes(config.colors[id]) ? config.colors[id] : "blue";
       node.classList.toggle("is-user-hidden", config.hidden.includes(id));
-      node.querySelector(":scope > .dashboard-widget-controls")?.remove();
-      if (editMode) node.appendChild(createWidgetControls(id));
+      const controls = node.querySelector(":scope > .dashboard-widget-controls");
+      if (editMode && !controls) node.appendChild(createWidgetControls(id));
+      if (!editMode && controls) controls.remove();
     });
 
     ensureEditBanner(workspace);
@@ -433,6 +434,14 @@
   });
 
   document.addEventListener("click", event => {
+    const personalControl = event.target.closest(
+      "#dashboardLayoutButton, #topbarUserButton, #sidebarUserMenu, [data-close-personalization], [data-switch-user], [data-layout-edit-toggle], [data-layout-reset], [data-color-mode], [data-widget-hide], [data-widget-color-choice], [data-widget-drag], [data-demo-logout]"
+    );
+    if (personalControl || event.target.classList.contains("personalization-overlay")) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }
+
     if (event.target.closest("#dashboardLayoutButton")) {
       openLayoutDialog();
       return;
@@ -503,6 +512,8 @@
       return;
     }
 
+    if (event.target.closest("[data-widget-drag]")) return;
+
     const logout = event.target.closest("[data-demo-logout]");
     if (logout) {
       localStorage.removeItem(CUSTOM_USER_KEY);
@@ -512,7 +523,7 @@
       scheduleApply();
       notify("Zakończono sesję demonstracyjną. Aktywny: Administrator.");
     }
-  });
+  }, true);
 
   document.addEventListener("change", event => {
     const checkbox = event.target.closest("[data-widget-visible]");
