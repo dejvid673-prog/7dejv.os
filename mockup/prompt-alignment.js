@@ -6,10 +6,11 @@
     { name: "Zamówienia", count: 1, status: "online" },
     { name: "DPD", count: 1, status: "online" },
     { name: "Ryby", count: 1, status: "online" },
-    { name: "Klient", count: 1, status: "demo" }
+    { name: "Obsługa klienta", count: 1, status: "demo" }
   ];
 
   const totalDemoReports = 5;
+  const urgentDemoReports = 4;
   let scheduled = false;
 
   function setText(node, value) {
@@ -50,9 +51,14 @@
   function alignVisibleCounters() {
     setText(document.getElementById("dashboardNavCount"), String(totalDemoReports));
     setText(document.getElementById("agentRailCount"), String(totalDemoReports));
-
-    const openReportsCount = document.querySelector("#agentSummary .agent-stat:first-child strong");
-    setText(openReportsCount, String(totalDemoReports));
+    setText(
+      document.querySelector("#agentSummary .agent-stat:first-child strong"),
+      String(totalDemoReports)
+    );
+    setText(
+      document.querySelector("#agentSummary .agent-stat:nth-child(3) strong"),
+      String(urgentDemoReports)
+    );
   }
 
   function ensureAgentRoster() {
@@ -82,13 +88,24 @@
     }
   }
 
+  function ensureCustomerAgentFilter() {
+    const filter = document.getElementById("agentFilter");
+    if (!filter || filter.querySelector('option[value="client"]')) return;
+
+    const option = document.createElement("option");
+    option.value = "client";
+    option.textContent = "Agent obsługi klienta";
+    filter.appendChild(option);
+  }
+
   function ensureCustomerReportInAgentQueue() {
     const queue = document.getElementById("agentQueue");
     const filter = document.getElementById("agentFilter");
     if (!queue || !filter) return;
 
     const existing = document.getElementById("customerReportTicket");
-    if (filter.value !== "all") {
+    const shouldShow = filter.value === "all" || filter.value === "client";
+    if (!shouldShow) {
       existing?.remove();
       return;
     }
@@ -162,6 +179,7 @@
     alignWorkspaceCopy();
     alignVisibleCounters();
     ensureAgentRoster();
+    ensureCustomerAgentFilter();
     ensureCustomerReportInAgentQueue();
     ensureCustomerReportOnDashboard();
     improveControlLabels();
