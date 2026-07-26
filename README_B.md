@@ -6,126 +6,130 @@ Status: PRACA W TOKU
 
 ## Ostatni cykl
 
-Data: 2026-07-26
+Data: 2026-07-27
 
-Porównano zaakceptowaną makietę z pierwotnym promptem funkcjonalnym użytkownika. Główny układ uznano za prawidłowy. Wprowadzono wyłącznie małe korekty zgodności, bez szerokiego redesignu i bez rozszerzania etapu 1.
+Na wyraźne polecenie użytkownika dodano komplet głównych zakładek docelowego panelu 7DEJV.os. Nowe moduły otrzymały działającą nawigację, podzakładki oraz lekkie ekrany startowe. Nie rozpoczęto ich funkcji biznesowych, backendu ani integracji.
 
 ## Kopia zapasowa
 
-Przed zmianami utworzono i zweryfikowano gałąź:
+Zaakceptowany wcześniejszy wygląd pozostaje zabezpieczony w gałęzi:
 
 `backup/stage-01-approved-ui-2026-07-26`
 
-Gałąź wskazuje zaakceptowany stan panelu sprzed korekt. Instrukcja bezpiecznego obejrzenia i przywrócenia znajduje się w:
+Instrukcja przywracania:
 
 `stages/stage-01-mockup/BACKUP.md`
 
 ## Zmienione i dodane pliki
 
 - `mockup/index.html`
-- `mockup/prompt-alignment.css`
-- `mockup/prompt-alignment.js`
+- `mockup/modules-extension.css`
+- `mockup/modules-extension.js`
 - `mockup/README.md`
-- `stages/stage-01-mockup/BACKUP.md`
-- `stages/stage-01-mockup/PROMPT_ALIGNMENT_REVIEW.md`
-- `stages/stage-01-mockup/TEST_REPORT.md`
 - `README_B.md`
 
-## Wynik porównania z pierwotnym promptem
+## Dodane zakładki główne
 
-### Elementy znajdujące się we właściwym miejscu
+1. Dashboard
+2. Zamówienia + wysyłka
+3. Pakowanie
+4. Wiadomości
+5. Mapa i trasy
+6. Produkty
+7. Agenci
+8. Integracje
+9. Ustawienia
 
-- lewe menu zawiera moduły główne,
-- górny pasek zawiera podzakładki bieżącego modułu,
-- karty robocze znajdują się nad centralnym obszarem,
-- szczegóły zamówienia są w centralnej karcie i nie konkurują z panelem agentów,
-- prawa strona pozostaje przeznaczona dla agentów,
-- dashboard pokazuje wyjątki i wymagane działania,
-- DPD, Ryby i Palety są podsekcjami zamówień i wysyłki,
-- panel pakowania eksponuje miniaturę, nazwę, SKU, wagę i ilość,
-- główne zakładki nie są dublowane pomiędzy lewą i górną nawigacją.
+## Zachowanie nowych modułów
 
-### Elementy skorygowane
+- pozycje są widoczne w lewym menu,
+- kliknięcie zmienia aktywny moduł,
+- górny pasek pokazuje podzakładki danego modułu,
+- centralny obszar pokazuje ekran startowy modułu,
+- ekran wskazuje planowany zakres i informuje o braku integracji,
+- nowe moduły nie zapisują danych i nie wykonują operacji zewnętrznych,
+- lewe menu przewija się przy mniejszej wysokości ekranu,
+- dolna informacja o trybie demonstracyjnym i profil użytkownika pozostają dostępne.
 
-- zmieniono widoczną nazwę modułu na `Zamówienia + wysyłka`,
-- doprecyzowano opis dashboardu jako miejsce problemów wysyłkowych i zgłoszeń klientów przetworzonych przez agentów,
-- dodano demonstracyjne zgłoszenie klienta o priorytecie `78`,
-- zgłoszenie klienta jest widoczne na dashboardzie oraz w kolejce agentów,
-- zgłoszenie prowadzi do powiązanego zamówienia `#10542`,
-- dodano kompaktowy przegląd kilku agentów,
-- dodano demonstracyjnego agenta obsługi klienta do filtra,
-- poprawiono zachowanie filtra agenta klienta po przebudowie kolejki przez bazowy skrypt,
-- ujednolicono liczniki po dodaniu zgłoszenia klienta,
-- poprawiono widoczny fokus klawiatury i etykiety dostępności przycisków.
+## Podzakładki przygotowane do dalszej pracy
+
+### Wiadomości
+
+- Wszystkie
+- Do odpowiedzi
+- Wymagają decyzji
+
+### Mapa i trasy
+
+- Mapa
+- Trasy
+- Punkty pozyskania
+- Palety
+
+### Produkty
+
+- Katalog
+- Stany
+- Pakowanie
+- Problemy
+
+### Agenci
+
+- Lista agentów
+- Konfiguracja
+- Testy
+- Historia
+- Błędy
+
+### Integracje
+
+- E-commerce
+- Przewoźnicy
+- Mapowanie
+- Logi
+
+### Ustawienia
+
+- Ogólne
+- Użytkownicy
+- Statusy
+- Motywy
+- Aktualizacje
 
 ## Elementy celowo niewdrożone
 
-Nie rozpoczęto:
+- rzeczywista skrzynka wiadomości,
+- mapa i wyznaczanie tras,
+- synchronizacja produktów,
+- konfiguracja i uruchamianie agentów,
+- integracje marketplace i przewoźników,
+- zapis ustawień,
+- backend, baza danych i API.
 
-- rozbudowanego panelu zarządzania agentami,
-- mapy dostaw ryb i palet,
-- rzeczywistej skrzynki wiadomości,
-- integracji marketplace i przewoźników,
-- ustawień systemowych,
-- użytkowników, ról i motywów,
-- aktualizacji i łatek,
-- pełnego panelu produktów,
-- backendu, bazy danych ani API.
+## Kontrola zakresu
 
-Elementy te należą do późniejszych etapów i nie powinny obecnie powstawać jako rozbudowane puste ekrany.
-
-## Elementy działające według kodu makiety
-
-- przełączanie Dashboardu, Zamówień + wysyłki i Pakowania,
-- podzakładki aktualnego modułu,
-- wyszukiwanie i filtrowanie zamówień demonstracyjnych,
-- otwieranie zamówienia i zgłoszenia,
-- przejście ze zgłoszenia do zamówienia,
-- przejście z zamówienia do pakowania,
-- otwieranie, przełączanie, przypinanie i zamykanie kart,
-- zachowanie kart podczas nawigacji w bieżącej sesji,
-- zwijanie, wysuwanie i przypinanie panelu agentów,
-- filtrowanie zgłoszeń według agentów,
-- demonstracyjne potwierdzanie produktów w pakowaniu.
+Nowe zakładki są wyłącznie szkieletem nawigacyjnym zgodnym z poleceniem użytkownika. Nie utworzono rozbudowanych atrap procesów ani funkcji udających prawdziwe połączenia.
 
 ## Wykonane kontrole
 
-- potwierdzono odczyt zaakceptowanego `mockup/index.html` z gałęzi kopii zapasowej,
-- potwierdzono odwołania bieżącego `index.html` do obu plików CSS i obu plików JavaScript,
-- wykonano `node --check` dla końcowej zawartości `prompt-alignment.js` po poprawie filtra — brak błędów składniowych,
-- sprawdzono statycznie kolejność dodatkowego zgłoszenia i jego powiązanie z zamówieniem,
-- sprawdzono statycznie spójność liczników: 5 otwartych, 1 krytyczne, 4 pilne,
-- porównano wynik z pierwotnym promptem i `ACCEPTANCE.md`.
-
-## Elementy wyłącznie wizualne lub demonstracyjne
-
-- działania agentów,
-- zgłoszenie i agent obsługi klienta,
-- zmiany statusów zgłoszeń,
-- edycja danych zamówienia,
-- operacje zbiorcze,
-- zakończenie pakowania,
-- dane DPD, ryb i palet,
-- wszystkie działania sugerujące przyszłe operacje zewnętrzne.
+- sprawdzono statycznie komplet dziewięciu pozycji w `index.html`,
+- sprawdzono zgodność identyfikatorów zakładek z konfiguracją `modules-extension.js`,
+- sprawdzono, że nowe moduły nie używają identyfikatorów obsługiwanych przez bazowy `app.js`, dzięki czemu nie kolidują z Dashboardem, Zamówieniami i Pakowaniem,
+- sprawdzono kolejność ładowania plików CSS i JavaScript,
+- sprawdzono obecność informacji o demonstracyjnym charakterze modułów.
 
 ## Niewykonane testy
 
-Nie wykonano pełnego automatycznego testu renderowania i kliknięć bieżącej wersji po korektach. Brak działającego Chromium/Playwright w dostępnym środowisku wykonawczym.
+Nie wykonano jeszcze pełnego testu wszystkich nowych zakładek w lokalnej przeglądarce użytkownika. Po `git pull` należy sprawdzić klikanie każdej pozycji i podzakładki oraz zachowanie menu przy aktualnej rozdzielczości.
 
-Użytkownik powinien po `git pull` przejść pełny scenariusz z `stages/stage-01-mockup/ACCEPTANCE.md`.
+## Problemy i blokady
 
-## Problemy
-
-Brak potwierdzonych błędów składniowych. Pozostaje kontrola wizualna i interakcyjna najnowszej wersji w lokalnej przeglądarce użytkownika.
-
-## Blokady
-
-Brak blokady repozytorium.
+Brak znanej blokady repozytorium. Pozostaje kontrola wizualna najnowszej wersji.
 
 ## Następny najmniejszy krok
 
-1. Pobrać najnowsze zmiany przez `git pull`.
-2. Wykonać twarde odświeżenie makiety przez `Ctrl + F5`.
-3. Przejść pełny scenariusz `ACCEPTANCE.md`.
-4. Poprawić wyłącznie konkretne błędy interakcji lub drobne problemy ergonomiczne.
-5. Po pozytywnym teście oznaczyć etap 1 jako `ZAKOŃCZONE`.
+1. Pobrać zmiany przez `git pull`.
+2. Wykonać `Ctrl + F5`.
+3. Kliknąć wszystkie dziewięć głównych zakładek.
+4. Sprawdzić podzakładki nowych modułów.
+5. Następnie rozpocząć uzgodnioną przebudowę listy `Zamówienia + wysyłka`: osobne ID i numer zamówienia, rozwijane wiersze, podział DPD/Ryby/Palety oraz panel szybkiego nadania.
