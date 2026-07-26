@@ -9,6 +9,7 @@
     { name: "Klient", count: 1, status: "demo" }
   ];
 
+  const totalDemoReports = 5;
   let scheduled = false;
 
   function setText(node, value) {
@@ -46,6 +47,14 @@
     setText(ordersHeading, "Lista zamówień i realizacji");
   }
 
+  function alignVisibleCounters() {
+    setText(document.getElementById("dashboardNavCount"), String(totalDemoReports));
+    setText(document.getElementById("agentRailCount"), String(totalDemoReports));
+
+    const openReportsCount = document.querySelector("#agentSummary .agent-stat:first-child strong");
+    setText(openReportsCount, String(totalDemoReports));
+  }
+
   function ensureAgentRoster() {
     const summary = document.getElementById("agentSummary");
     const body = summary?.parentElement;
@@ -73,13 +82,17 @@
     }
   }
 
-  function ensureCustomerReport() {
+  function ensureCustomerReportInAgentQueue() {
     const queue = document.getElementById("agentQueue");
     const filter = document.getElementById("agentFilter");
     if (!queue || !filter) return;
 
-    document.getElementById("customerReportTicket")?.remove();
-    if (filter.value !== "all") return;
+    const existing = document.getElementById("customerReportTicket");
+    if (filter.value !== "all") {
+      existing?.remove();
+      return;
+    }
+    if (existing) return;
 
     const ticket = document.createElement("button");
     ticket.id = "customerReportTicket";
@@ -102,6 +115,37 @@
     else queue.appendChild(ticket);
   }
 
+  function ensureCustomerReportOnDashboard() {
+    const queuePanel = [...document.querySelectorAll(".panel")]
+      .find(panel => panel.querySelector(".panel-header h3")?.textContent.trim() === "Kolejka priorytetów");
+    if (!queuePanel || document.getElementById("dashboardCustomerReport")) return;
+
+    const report = document.createElement("article");
+    report.id = "dashboardCustomerReport";
+    report.className = "issue-row is-customer-report";
+    report.dataset.openOrder = "10542";
+    report.setAttribute("role", "button");
+    report.setAttribute("tabindex", "0");
+    report.setAttribute("aria-label", "Otwórz zamówienie 10542 powiązane ze zgłoszeniem klienta");
+    report.innerHTML = `
+      <div class="priority-score medium">78</div>
+      <div class="issue-copy">
+        <strong>Klient prosi o zmianę adresu</strong>
+        <span>Wiadomość została sklasyfikowana przez agenta obsługi klienta.</span>
+      </div>
+      <div class="issue-meta">
+        <strong>Agent klienta</strong>
+        <span>#10542 · 7 min · demo</span>
+      </div>
+    `;
+
+    const lowerPriorityRow = [...queuePanel.querySelectorAll(".issue-row")]
+      .find(item => Number(item.querySelector(".priority-score")?.textContent || 0) < 78);
+
+    if (lowerPriorityRow) queuePanel.insertBefore(report, lowerPriorityRow);
+    else queuePanel.appendChild(report);
+  }
+
   function improveControlLabels() {
     const pin = document.getElementById("toggleAgentPin");
     const close = document.getElementById("toggleAgentPanel");
@@ -116,8 +160,10 @@
     scheduled = false;
     alignNavigationLabels();
     alignWorkspaceCopy();
+    alignVisibleCounters();
     ensureAgentRoster();
-    ensureCustomerReport();
+    ensureCustomerReportInAgentQueue();
+    ensureCustomerReportOnDashboard();
     improveControlLabels();
   }
 
