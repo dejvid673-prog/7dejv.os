@@ -8,128 +8,126 @@ Status: PRACA W TOKU
 
 Data: 2026-07-27
 
-Na wyraźne polecenie użytkownika dodano komplet głównych zakładek docelowego panelu 7DEJV.os. Nowe moduły otrzymały działającą nawigację, podzakładki oraz lekkie ekrany startowe. Nie rozpoczęto ich funkcji biznesowych, backendu ani integracji.
+Na podstawie adnotacji użytkownika wykonanych na zrzucie ekranu dodano personalizację dashboardu, wyraziste akcenty kolorystyczne, zmianę kolejności paneli, przełączanie profili użytkowników oraz demonstracyjny ekran logowania.
 
-## Kopia zapasowa
+Nie wdrożono prawdziwego uwierzytelniania, backendu ani kontroli uprawnień.
 
-Zaakceptowany wcześniejszy wygląd pozostaje zabezpieczony w gałęzi:
+## Kopie zapasowe
+
+Stan bezpośrednio przed rozpoczęciem personalizacji zapisano w gałęzi:
+
+`backup/before-dashboard-personalization-2026-07-27`
+
+Wcześniejszy zaakceptowany wygląd pozostaje w:
 
 `backup/stage-01-approved-ui-2026-07-26`
-
-Instrukcja przywracania:
-
-`stages/stage-01-mockup/BACKUP.md`
 
 ## Zmienione i dodane pliki
 
 - `mockup/index.html`
-- `mockup/modules-extension.css`
-- `mockup/modules-extension.js`
+- `mockup/dashboard-personalization.css`
+- `mockup/dashboard-personalization.js`
 - `mockup/README.md`
+- `stages/stage-01-mockup/PERSONALIZATION.md`
 - `README_B.md`
 
-## Dodane zakładki główne
+## Wprowadzone funkcje
 
-1. Dashboard
-2. Zamówienia + wysyłka
-3. Pakowanie
-4. Wiadomości
-5. Mapa i trasy
-6. Produkty
-7. Agenci
-8. Integracje
-9. Ustawienia
+### Personalizacja dashboardu
 
-## Zachowanie nowych modułów
+- dodano przycisk `Układ` w górnym pasku,
+- można pokazywać i ukrywać wybrane panele,
+- można przełączyć wyrazistą albo neutralną kolorystykę,
+- można włączyć tryb przesuwania paneli,
+- można zmieniać kolejność kafli statystyk,
+- można zmieniać kolejność dużych paneli,
+- można przypisać kolor do każdego panelu,
+- można przywrócić układ domyślny profilu.
 
-- pozycje są widoczne w lewym menu,
-- kliknięcie zmienia aktywny moduł,
-- górny pasek pokazuje podzakładki danego modułu,
-- centralny obszar pokazuje ekran startowy modułu,
-- ekran wskazuje planowany zakres i informuje o braku integracji,
-- nowe moduły nie zapisują danych i nie wykonują operacji zewnętrznych,
-- lewe menu przewija się przy mniejszej wysokości ekranu,
-- dolna informacja o trybie demonstracyjnym i profil użytkownika pozostają dostępne.
+### Profile użytkowników
 
-## Podzakładki przygotowane do dalszej pracy
+Dodano profile demonstracyjne:
 
-### Wiadomości
+- Administrator,
+- Pakowanie,
+- Obsługa klienta,
+- własny użytkownik demonstracyjny.
 
-- Wszystkie
-- Do odpowiedzi
-- Wymagają decyzji
+Zmiana użytkownika jest dostępna:
 
-### Mapa i trasy
+- przez profil na dole lewego menu,
+- przez przycisk użytkownika w górnym pasku.
 
-- Mapa
-- Trasy
-- Punkty pozyskania
-- Palety
+Każdy profil ma oddzielny zapis ustawień dashboardu w `localStorage` przeglądarki.
 
-### Produkty
+### Logowanie
 
-- Katalog
-- Stany
-- Pakowanie
-- Problemy
+Dodano formularz logowania demonstracyjnego:
 
-### Agenci
+- nazwa użytkownika,
+- wybór profilu pracy,
+- pole hasła demonstracyjnego,
+- demonstracyjne wylogowanie.
 
-- Lista agentów
-- Konfiguracja
-- Testy
-- Historia
-- Błędy
+Formularz nie sprawdza hasła, nie komunikuje się z serwerem i nie nadaje prawdziwych uprawnień. Ograniczenie jest jawnie opisane w interfejsie.
 
-### Integracje
+### Kolorystyka
 
-- E-commerce
-- Przewoźnicy
-- Mapowanie
-- Logi
+- dodano zróżnicowane, jaskrawe akcenty głównych kafli,
+- dodano kolory dużych paneli dashboardu,
+- dodano zróżnicowane kolory ikon modułów w lewym menu,
+- zachowano zaakceptowane ciemne menu i jasny centralny obszar.
 
-### Ustawienia
+## Zachowanie ustawień
 
-- Ogólne
-- Użytkownicy
-- Statusy
-- Motywy
-- Aktualizacje
+Personalizacja jest zapisywana lokalnie w przeglądarce:
 
-## Elementy celowo niewdrożone
+- pozostaje po odświeżeniu strony,
+- jest oddzielna dla użytkowników demonstracyjnych,
+- nie synchronizuje się między komputerami ani przeglądarkami,
+- zostanie utracona po wyczyszczeniu danych witryny.
 
-- rzeczywista skrzynka wiadomości,
-- mapa i wyznaczanie tras,
-- synchronizacja produktów,
-- konfiguracja i uruchamianie agentów,
-- integracje marketplace i przewoźników,
-- zapis ustawień,
-- backend, baza danych i API.
+## Kontrola techniczna
 
-## Kontrola zakresu
-
-Nowe zakładki są wyłącznie szkieletem nawigacyjnym zgodnym z poleceniem użytkownika. Nie utworzono rozbudowanych atrap procesów ani funkcji udających prawdziwe połączenia.
-
-## Wykonane kontrole
-
-- sprawdzono statycznie komplet dziewięciu pozycji w `index.html`,
-- sprawdzono zgodność identyfikatorów zakładek z konfiguracją `modules-extension.js`,
-- sprawdzono, że nowe moduły nie używają identyfikatorów obsługiwanych przez bazowy `app.js`, dzięki czemu nie kolidują z Dashboardem, Zamówieniami i Pakowaniem,
-- sprawdzono kolejność ładowania plików CSS i JavaScript,
-- sprawdzono obecność informacji o demonstracyjnym charakterze modułów.
+- zabezpieczono stan przed zmianami w osobnej gałęzi,
+- sprawdzono podłączenie nowych plików CSS i JavaScript w `index.html`,
+- poprawiono obsługę kliknięć kontrolek personalizacji, aby nie otwierały elementów znajdujących się pod nimi,
+- ograniczono przebudowę kontrolek w trybie edycji, aby uniknąć zapętlenia obserwatora DOM,
+- sprawdzono statycznie zamknięcie funkcji i zdarzeń w końcowej części skryptu.
 
 ## Niewykonane testy
 
-Nie wykonano jeszcze pełnego testu wszystkich nowych zakładek w lokalnej przeglądarce użytkownika. Po `git pull` należy sprawdzić klikanie każdej pozycji i podzakładki oraz zachowanie menu przy aktualnej rozdzielczości.
+Nie wykonano jeszcze pełnego testu personalizacji w lokalnej przeglądarce użytkownika.
+
+Do sprawdzenia po `git pull`:
+
+- otwieranie okna `Układ`,
+- pokazywanie i ukrywanie paneli,
+- zmiana kolorystyki,
+- przeciąganie paneli,
+- zachowanie kolejności po odświeżeniu,
+- przełączanie użytkowników,
+- osobne ustawienia dla każdego profilu,
+- demonstracyjne logowanie i wylogowanie,
+- wygląd przy aktualnej rozdzielczości użytkownika.
+
+## Elementy celowo niewdrożone
+
+- prawdziwe konta użytkowników,
+- bezpieczne przechowywanie haseł,
+- autoryzacja i uprawnienia,
+- zapis ustawień w bazie danych,
+- synchronizacja ustawień między urządzeniami,
+- backend i API.
 
 ## Problemy i blokady
 
-Brak znanej blokady repozytorium. Pozostaje kontrola wizualna najnowszej wersji.
+Brak znanej blokady repozytorium. Pozostaje ręczna kontrola interfejsu po pobraniu zmian.
 
 ## Następny najmniejszy krok
 
-1. Pobrać zmiany przez `git pull`.
+1. Wykonać lokalnie `git pull`.
 2. Wykonać `Ctrl + F5`.
-3. Kliknąć wszystkie dziewięć głównych zakładek.
-4. Sprawdzić podzakładki nowych modułów.
-5. Następnie rozpocząć uzgodnioną przebudowę listy `Zamówienia + wysyłka`: osobne ID i numer zamówienia, rozwijane wiersze, podział DPD/Ryby/Palety oraz panel szybkiego nadania.
+3. Sprawdzić personalizację i profile użytkowników.
+4. Zgłosić konkretne błędy ergonomiczne albo działania.
+5. Następnie wrócić do przebudowy listy `Zamówienia + wysyłka`: osobne ID i numer zamówienia, rozwijane wiersze, podział DPD/Ryby/Palety oraz panel szybkiego nadania.
