@@ -6,6 +6,7 @@
   <meta name="description" content="Interaktywna makieta etapu 1 panelu operacyjnego 7DEJV.os">
   <title>7DEJV.os — makieta etapu 1</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="prompt-alignment.css">
 </head>
 <body>
   <div class="app-shell" id="appShell">
@@ -26,7 +27,7 @@
         </button>
         <button class="nav-item" data-module="orders" type="button">
           <span class="nav-icon">▤</span>
-          <span>Zamówienia</span>
+          <span>Zamówienia + wysyłka</span>
           <span class="nav-count">12</span>
         </button>
         <button class="nav-item" data-module="packing" type="button">
@@ -111,5 +112,6 @@
 
   <div class="toast-region" id="toastRegion" aria-live="polite"></div>
   <script src="app.js"></script>
+  <script src="prompt-alignment.js"></script>
 </body>
 </html>
