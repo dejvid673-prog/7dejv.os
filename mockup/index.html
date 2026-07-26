@@ -7,6 +7,7 @@
   <title>7DEJV.os — makieta etapu 1</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="prompt-alignment.css">
+  <link rel="stylesheet" href="modules-extension.css">
 </head>
 <body>
   <div class="app-shell" id="appShell">
@@ -34,6 +35,30 @@
           <span class="nav-icon">□</span>
           <span>Pakowanie</span>
           <span class="nav-count">3</span>
+        </button>
+        <button class="nav-item" data-extension-module="messages" type="button">
+          <span class="nav-icon">✉</span>
+          <span>Wiadomości</span>
+        </button>
+        <button class="nav-item" data-extension-module="routes" type="button">
+          <span class="nav-icon">⌖</span>
+          <span>Mapa i trasy</span>
+        </button>
+        <button class="nav-item" data-extension-module="products" type="button">
+          <span class="nav-icon">▦</span>
+          <span>Produkty</span>
+        </button>
+        <button class="nav-item" data-extension-module="agents" type="button">
+          <span class="nav-icon">◇</span>
+          <span>Agenci</span>
+        </button>
+        <button class="nav-item" data-extension-module="integrations" type="button">
+          <span class="nav-icon">⇄</span>
+          <span>Integracje</span>
+        </button>
+        <button class="nav-item" data-extension-module="settings" type="button">
+          <span class="nav-icon">⚙</span>
+          <span>Ustawienia</span>
         </button>
       </nav>
 
@@ -113,5 +138,6 @@
   <div class="toast-region" id="toastRegion" aria-live="polite"></div>
   <script src="app.js"></script>
   <script src="prompt-alignment.js"></script>
+  <script src="modules-extension.js"></script>
 </body>
 </html>
