@@ -2,28 +2,68 @@
 
 Lekka makieta HTML/CSS/JavaScript bez backendu, bazy danych i rzeczywistych integracji.
 
-## Uruchomienie
+## Aktualizacja lokalnej kopii
 
-Otwórz plik `index.html` w przeglądarce albo uruchom prosty serwer statyczny:
+Jeżeli repozytorium znajduje się już na komputerze:
 
-```bash
-cd mockup
-python -m http.server 8080
+```powershell
+cd "$HOME\Desktop\7dejv.os"
+git pull
 ```
 
-Następnie otwórz `http://localhost:8080`.
+Po aktualizacji wykonaj w przeglądarce twarde odświeżenie:
+
+```text
+Ctrl + F5
+```
+
+## Uruchomienie
+
+```powershell
+python -m http.server 8080 --directory "$HOME\Desktop\7dejv.os\mockup"
+```
+
+Następnie otwórz:
+
+```text
+http://localhost:8080
+```
+
+## Pliki makiety
+
+- `index.html` — główny szkielet,
+- `styles.css` — zaakceptowany podstawowy styl,
+- `app.js` — bazowe dane i interakcje etapu 1,
+- `prompt-alignment.css` — małe korekty zgodności z pierwotnym promptem,
+- `prompt-alignment.js` — demonstracyjny agent klienta, zgłoszenie klienta i ujednolicenie opisów.
 
 ## Elementy działające w interfejsie
 
-- przełączanie modułów Dashboard, Zamówienia i Pakowanie,
+- przełączanie modułów Dashboard, Zamówienia + wysyłka i Pakowanie,
 - podzakładki aktualnego modułu,
 - otwieranie zamówień i zgłoszeń w kartach roboczych,
 - przełączanie, przypinanie i zamykanie kart,
 - zachowanie otwartych kart podczas nawigacji w bieżącej sesji,
 - zwijanie, wysuwanie i przypinanie panelu agentów,
 - wybór zgłoszenia i przejście do powiązanego zamówienia,
+- demonstracyjne zgłoszenie klienta przetworzone przez agenta,
+- filtrowanie kolejki według agentów,
 - otwarcie panelu pakowania,
 - demonstracyjne potwierdzanie produktów.
+
+## Kopia zaakceptowanego wyglądu
+
+Stan sprzed korekt zgodności znajduje się w gałęzi:
+
+```text
+backup/stage-01-approved-ui-2026-07-26
+```
+
+Instrukcja przywracania:
+
+```text
+stages/stage-01-mockup/BACKUP.md
+```
 
 ## Ograniczenia etapu 1
 
