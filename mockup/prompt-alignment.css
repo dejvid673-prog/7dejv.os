@@ -1,0 +1,77 @@
+/* Drobne korekty zgodności z pierwotnym promptem. Główny styl pozostaje bez zmian. */
+.nav-item[data-module="orders"] > span:nth-child(2) {
+  min-width: 0;
+  line-height: 1.15;
+}
+
+.agent-panel-body {
+  grid-template-rows: auto auto auto minmax(170px, 1fr) minmax(180px, .85fr);
+}
+
+.agent-roster {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border);
+  background: #fbfcfe;
+}
+
+.agent-roster-item {
+  min-width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 7px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 7px;
+  font-weight: 750;
+}
+
+.agent-roster-item strong {
+  color: var(--text);
+  font-size: 8px;
+}
+
+.agent-roster-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 2px var(--success-soft);
+}
+
+.agent-roster-item.is-demo .agent-roster-dot {
+  background: var(--warning);
+  box-shadow: 0 0 0 2px var(--warning-soft);
+}
+
+.agent-ticket.is-customer-report {
+  border-left: 3px solid var(--primary);
+  background: #fbfdff;
+}
+
+.agent-ticket.is-customer-report:hover {
+  background: var(--primary-soft);
+}
+
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+@media (max-height: 760px) {
+  .agent-panel-body {
+    grid-template-rows: auto auto auto minmax(140px, 1fr) minmax(150px, .75fr);
+  }
+
+  .agent-roster {
+    padding-block: 6px;
+  }
+}
