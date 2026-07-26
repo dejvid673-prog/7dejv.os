@@ -4,26 +4,21 @@
 
 Status: PRACA W TOKU
 
-## Ostatni cykl
+## Aktywny cykl
 
 Data: 2026-07-26
 
-Użytkownik uruchomił makietę lokalnie i zaakceptował wstępny styl, główny układ oraz kierunek wizualny 7DEJV.os. Dalsze poprawki wyglądu mają dotyczyć mniejszych szczegółów, ergonomii i problemów wykrytych podczas testów, bez szerokiego redesignu.
+Trwa porównanie zaakceptowanej makiety z pierwotnym promptem funkcjonalnym użytkownika. Przed zmianami utworzono gałąź kopii zapasowej `backup/stage-01-approved-ui-2026-07-26` wskazującą zaakceptowany stan panelu.
 
-## Zmienione i dodane pliki
+## Cel cyklu
 
-- `stages/stage-01-mockup/UI_DECISIONS.md`
-- `README_B.md`
+- sprawdzić zgodność rozmieszczenia głównych elementów z pierwotnym promptem,
+- zachować zaakceptowany styl i układ trzech kolumn,
+- poprawić wyłącznie braki istotne dla rdzenia etapu 1,
+- nie dodawać backendu, integracji ani nowych pełnych modułów,
+- udokumentować elementy odłożone na późniejsze etapy.
 
-## Wykonano w tym cyklu
-
-- zapisano akceptację obecnego kierunku wizualnego,
-- określono elementy interfejsu, które należy zachować,
-- określono dozwolony zakres drobnych poprawek,
-- wskazano zmiany wymagające nowej decyzji użytkownika,
-- utrzymano etap 1 bez rozszerzania go o backend, integracje lub nowe moduły.
-
-## Aktualny stan makiety
+## Stan przed zmianami
 
 - działa główna nawigacja: Dashboard, Zamówienia i Pakowanie,
 - działają podzakładki aktualnego modułu,
@@ -37,7 +32,7 @@ Użytkownik uruchomił makietę lokalnie i zaakceptował wstępny styl, główny
 - działa panel pakowania z miniaturą, nazwą, SKU, wagą i ilością,
 - funkcje zewnętrzne pozostają demonstracyjne i nie wykonują rzeczywistych operacji.
 
-## Decyzja użytkownika
+## Decyzja użytkownika obowiązująca w tym cyklu
 
 Zaakceptowane jako baza dalszej pracy:
 
@@ -51,36 +46,20 @@ Zaakceptowane jako baza dalszej pracy:
 
 Pełny zapis decyzji znajduje się w `stages/stage-01-mockup/UI_DECISIONS.md`.
 
-## Elementy wyłącznie wizualne lub demonstracyjne
+## Ograniczenia
 
-- działania agentów,
-- zmiany statusów zgłoszeń,
-- edycja danych zamówienia,
-- operacje zbiorcze,
-- zakończenie pakowania,
-- dane DPD, ryb i palet,
-- wszystkie działania sugerujące przyszłe operacje zewnętrzne.
-
-## Kontrola zakresu
-
-- nie dodano backendu,
-- nie dodano bazy danych,
-- nie dodano rzeczywistych integracji,
-- nie dodano API DPD, Allegro, Gmaila ani PrestaShop,
-- nie dodano prawdziwych agentów ani harmonogramów,
-- nie dodano logowania, ról, map ani systemu aktualizacji,
-- nie zdublowano głównych zakładek pomiędzy lewą i górną nawigacją,
-- prawa strona pozostaje przeznaczona dla panelu agentów,
-- nie zmieniono zaakceptowanego głównego kierunku wizualnego.
-
-## Problemy
-
-Pełny scenariusz interakcji z `ACCEPTANCE.md` nie został jeszcze formalnie udokumentowany krok po kroku. Użytkownik potwierdził prawidłowe uruchomienie i zaakceptował wygląd, ale pozostaje kontrola wszystkich interakcji oraz zapis wyników.
+- nie dodawać backendu,
+- nie dodawać bazy danych,
+- nie dodawać rzeczywistych integracji,
+- nie dodawać API DPD, Allegro, Gmaila ani PrestaShop,
+- nie dodawać prawdziwych agentów ani harmonogramów,
+- nie dodawać logowania, ról, map ani systemu aktualizacji,
+- nie zmieniać zaakceptowanego głównego kierunku wizualnego.
 
 ## Blokady
 
 Brak blokady repozytorium.
 
-## Następny najmniejszy krok
+## Następny krok
 
-Przejść z użytkownikiem pełny scenariusz z `stages/stage-01-mockup/ACCEPTANCE.md`, zebrać konkretne błędy działania lub drobne uwagi ergonomiczne, utworzyć raport testów i poprawić wyłącznie wykryte problemy bez zmiany zaakceptowanego stylu.
+Zakończyć porównanie promptu, wprowadzić minimalne korekty interfejsu, sprawdzić składnię i zaktualizować ten raport.
