@@ -1,4 +1,4 @@
-# 7DEJV.os — interaktywna makieta etapu 1
+# 7DEJV.os — interaktywna makieta
 
 Lekka makieta HTML/CSS/JavaScript bez backendu, bazy danych i rzeczywistych integracji.
 
@@ -35,11 +35,27 @@ http://localhost:8080
 - `styles.css` — zaakceptowany podstawowy styl,
 - `app.js` — bazowe dane i interakcje etapu 1,
 - `prompt-alignment.css` — małe korekty zgodności z pierwotnym promptem,
-- `prompt-alignment.js` — demonstracyjny agent klienta, zgłoszenie klienta i ujednolicenie opisów.
+- `prompt-alignment.js` — demonstracyjny agent klienta, zgłoszenie klienta i ujednolicenie opisów,
+- `modules-extension.css` — układ pełnej nawigacji i ekranów startowych,
+- `modules-extension.js` — działająca nawigacja dodatkowych modułów.
+
+## Główne moduły w lewym menu
+
+- Dashboard,
+- Zamówienia + wysyłka,
+- Pakowanie,
+- Wiadomości,
+- Mapa i trasy,
+- Produkty,
+- Agenci,
+- Integracje,
+- Ustawienia.
+
+Dashboard, Zamówienia + wysyłka i Pakowanie zawierają dotychczasowe interakcje. Pozostałe moduły mają działającą nawigację, podzakładki i lekkie ekrany startowe. Nie wykonują jeszcze funkcji biznesowych.
 
 ## Elementy działające w interfejsie
 
-- przełączanie modułów Dashboard, Zamówienia + wysyłka i Pakowanie,
+- przełączanie wszystkich głównych modułów,
 - podzakładki aktualnego modułu,
 - otwieranie zamówień i zgłoszeń w kartach roboczych,
 - przełączanie, przypinanie i zamykanie kart,
@@ -53,7 +69,7 @@ http://localhost:8080
 
 ## Kopia zaakceptowanego wyglądu
 
-Stan sprzed korekt zgodności znajduje się w gałęzi:
+Stan sprzed późniejszych korekt znajduje się w gałęzi:
 
 ```text
 backup/stage-01-approved-ui-2026-07-26
@@ -65,10 +81,11 @@ Instrukcja przywracania:
 stages/stage-01-mockup/BACKUP.md
 ```
 
-## Ograniczenia etapu 1
+## Ograniczenia
 
 - dane istnieją wyłącznie w pamięci przeglądarki,
 - odświeżenie strony przywraca stan początkowy,
+- nowe moduły są obecnie szkieletami do kolejnego projektowania,
 - brak komunikacji z PrestaShop, DPD, Gmailem i innymi usługami,
 - brak rzeczywistych operacji biznesowych,
 - komunikaty i działania agentów są demonstracyjne.
