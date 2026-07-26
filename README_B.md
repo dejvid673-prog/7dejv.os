@@ -6,50 +6,50 @@ Status: PRACA W TOKU
 
 ## Ostatni cykl
 
-Data: 2026-07-25
+Data: 2026-07-26
 
-Wykonano pierwszy spójny wariant interaktywnej makiety etapu 1.
+Użytkownik uruchomił makietę lokalnie i zaakceptował wstępny styl, główny układ oraz kierunek wizualny 7DEJV.os. Dalsze poprawki wyglądu mają dotyczyć mniejszych szczegółów, ergonomii i problemów wykrytych podczas testów, bez szerokiego redesignu.
 
 ## Zmienione i dodane pliki
 
-- `mockup/index.html`
-- `mockup/styles.css`
-- `mockup/app.js`
-- `mockup/README.md`
+- `stages/stage-01-mockup/UI_DECISIONS.md`
 - `README_B.md`
 
-## Wykonano
+## Wykonano w tym cyklu
 
-- przygotowano jasny, techniczny układ backoffice,
-- dodano główną nawigację: Dashboard, Zamówienia i Pakowanie,
-- dodano podzakładki zależne od bieżącego modułu,
-- dodano karty robocze podobne do kart przeglądarki,
-- dodano otwieranie zamówień, zgłoszeń i sesji pakowania jako kart,
-- dodano przełączanie, przypinanie i zamykanie kart,
-- zachowano otwarte karty podczas zmiany modułu w bieżącej sesji,
-- dodano stały prawy panel agentów,
-- dodano zwijanie, wysuwanie i przypinanie panelu agentów,
-- dodano kolejkę zgłoszeń sortowaną według priorytetu 1–100,
-- dodano przejście ze zgłoszenia do powiązanego zamówienia,
-- dodano demonstracyjną listę zamówień i filtry,
-- dodano centralny widok szczegółów zamówienia,
-- dodano panel pakowania z miniaturą, nazwą, SKU, wagą i ilością,
-- dodano demonstracyjne potwierdzanie produktów,
-- oznaczono brak rzeczywistych połączeń z API i trwałego zapisu.
+- zapisano akceptację obecnego kierunku wizualnego,
+- określono elementy interfejsu, które należy zachować,
+- określono dozwolony zakres drobnych poprawek,
+- wskazano zmiany wymagające nowej decyzji użytkownika,
+- utrzymano etap 1 bez rozszerzania go o backend, integracje lub nowe moduły.
 
-## Elementy działające
+## Aktualny stan makiety
 
-- przełączanie głównych modułów,
-- przełączanie podzakładek,
-- wyszukiwanie zamówień w danych demonstracyjnych,
-- filtrowanie listy zamówień,
-- otwieranie przykładowego zamówienia,
-- otwieranie przykładowego zgłoszenia,
-- przejście ze zgłoszenia do zamówienia,
-- przejście z zamówienia do panelu pakowania,
-- obsługa kart roboczych,
-- obsługa prawego panelu agentów,
-- demonstracyjne potwierdzanie pozycji podczas pakowania.
+- działa główna nawigacja: Dashboard, Zamówienia i Pakowanie,
+- działają podzakładki aktualnego modułu,
+- działają karty robocze: otwieranie, przełączanie, przypinanie i zamykanie,
+- otwarte karty są zachowywane podczas nawigacji w bieżącej sesji,
+- działa stały prawy panel agentów wraz ze zwijaniem, wysuwaniem i przypinaniem,
+- działa kolejka zgłoszeń sortowana według priorytetu 1–100,
+- działa przejście ze zgłoszenia do powiązanego zamówienia,
+- działa demonstracyjna lista zamówień i filtrowanie,
+- działa centralny widok szczegółów zamówienia,
+- działa panel pakowania z miniaturą, nazwą, SKU, wagą i ilością,
+- funkcje zewnętrzne pozostają demonstracyjne i nie wykonują rzeczywistych operacji.
+
+## Decyzja użytkownika
+
+Zaakceptowane jako baza dalszej pracy:
+
+- ciemne lewe menu,
+- jasny centralny obszar roboczy,
+- stały prawy panel agentów,
+- układ lewa nawigacja / centralna praca / panel agentów,
+- górne podzakładki i karty robocze,
+- techniczny, uporządkowany styl,
+- obecna ogólna kolorystyka i gęstość informacji.
+
+Pełny zapis decyzji znajduje się w `stages/stage-01-mockup/UI_DECISIONS.md`.
 
 ## Elementy wyłącznie wizualne lub demonstracyjne
 
@@ -70,23 +70,17 @@ Wykonano pierwszy spójny wariant interaktywnej makiety etapu 1.
 - nie dodano prawdziwych agentów ani harmonogramów,
 - nie dodano logowania, ról, map ani systemu aktualizacji,
 - nie zdublowano głównych zakładek pomiędzy lewą i górną nawigacją,
-- prawa strona pozostaje przeznaczona dla panelu agentów.
-
-## Wykonane kontrole
-
-- sprawdzono parsowanie struktury HTML lokalnego wariantu roboczego,
-- sprawdzono składnię JavaScript lokalnego wariantu roboczego poleceniem `node --check`,
-- odczytano po zapisie zawartość `mockup/app.js` z repozytorium i wykonano kontrolę statyczną kluczowych sekcji,
-- porównano zakres makiety z `ACCEPTANCE.md`.
+- prawa strona pozostaje przeznaczona dla panelu agentów,
+- nie zmieniono zaakceptowanego głównego kierunku wizualnego.
 
 ## Problemy
 
-Próba pełnego renderowania przez Chromium w trybie headless nie zakończyła się w dostępnym środowisku wykonawczym. Nie potwierdzono jeszcze automatycznie pełnego scenariusza kliknięć w wersji zapisanej w repozytorium.
+Pełny scenariusz interakcji z `ACCEPTANCE.md` nie został jeszcze formalnie udokumentowany krok po kroku. Użytkownik potwierdził prawidłowe uruchomienie i zaakceptował wygląd, ale pozostaje kontrola wszystkich interakcji oraz zapis wyników.
 
 ## Blokady
 
-Brak blokady repozytorium. Pozostaje test uruchomieniowy i wizualny w przeglądarce.
+Brak blokady repozytorium.
 
 ## Następny najmniejszy krok
 
-Uruchomić `mockup/index.html` przez serwer statyczny, przejść pełny scenariusz z `ACCEPTANCE.md`, sprawdzić zachowanie kart i panelu agentów oraz poprawić wyłącznie wykryte błędy interakcji lub układu.
+Przejść z użytkownikiem pełny scenariusz z `stages/stage-01-mockup/ACCEPTANCE.md`, zebrać konkretne błędy działania lub drobne uwagi ergonomiczne, utworzyć raport testów i poprawić wyłącznie wykryte problemy bez zmiany zaakceptowanego stylu.
