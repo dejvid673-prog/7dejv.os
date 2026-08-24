@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Interaktywna makieta etapu 1 panelu operacyjnego 7DEJV.os">
-  <title>7DEJV.os — makieta etapu 1</title>
+  <meta name="description" content="RaFish Ops — operacyjny panel 7DEJV.os z GitHub jako źródłem prawdy">
+  <title>RaFish Ops — 7DEJV.os</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="prompt-alignment.css">
   <link rel="stylesheet" href="modules-extension.css">
+  <link rel="stylesheet" href="github-source.css">
   <link rel="stylesheet" href="dashboard-personalization.css">
 </head>
 <body>
@@ -16,8 +17,8 @@
       <div class="brand">
         <div class="brand-mark">7D</div>
         <div>
-          <strong>7DEJV.os</strong>
-          <span>Operations workspace</span>
+          <strong>RaFish Ops</strong>
+          <span>7DEJV.os workspace</span>
         </div>
       </div>
 
@@ -30,7 +31,7 @@
         <button class="nav-item" data-module="orders" type="button">
           <span class="nav-icon">▤</span>
           <span>Zamówienia + wysyłka</span>
-          <span class="nav-count">12</span>
+          <span class="nav-count">6</span>
         </button>
         <button class="nav-item" data-module="packing" type="button">
           <span class="nav-icon">□</span>
@@ -137,7 +138,9 @@
   </div>
 
   <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+  <script src="github-source-data.js"></script>
   <script src="app.js"></script>
+  <script src="github-source-runtime.js"></script>
   <script src="prompt-alignment.js"></script>
   <script src="modules-extension.js"></script>
   <script src="dashboard-personalization.js"></script>

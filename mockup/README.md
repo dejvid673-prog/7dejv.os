@@ -38,6 +38,9 @@ http://localhost:8080
 - `prompt-alignment.js` — demonstracyjny agent klienta, zgłoszenie klienta i ujednolicenie opisów,
 - `modules-extension.css` — układ pełnej nawigacji i ekranów startowych,
 - `modules-extension.js` — działająca nawigacja dodatkowych modułów,
+- `github-source-data.js` — wersjonowana migawka danych odczytanych z GitHub,
+- `github-source-runtime.js` — bezpiecznie osadza status źródła prawdy na dashboardzie,
+- `github-source.css` — widoki i status źródła prawdy,
 - `dashboard-personalization.css` — kolory, tryb edycji dashboardu, profile i okna dialogowe,
 - `dashboard-personalization.js` — ustawienia paneli, kolejność, profile użytkowników i logowanie demonstracyjne.
 
@@ -91,6 +94,14 @@ Ustawienia personalizacji są przechowywane w `localStorage` osobno dla każdego
 - demonstracyjne potwierdzanie produktów,
 - personalizacja widoczności, kolorów i kolejności paneli dashboardu,
 - przełączanie demonstracyjnych profili użytkowników.
+- podgląd aktualnej inwentaryzacji repozytoriów i rozbieżności źródła prawdy GitHub.
+
+## Źródło prawdy GitHub
+
+Widok `Integracje → Źródła prawdy` korzysta z migawki przygotowanej na podstawie
+pełnego odczytu listy repozytoriów i drzew gałęzi głównych konta GitHub.
+Migawka nie udaje połączenia na żywo: jej data jest zawsze widoczna w interfejsie.
+Zamówienia, klienci, przesyłki i aktywność agentów pozostają danymi demonstracyjnymi.
 
 ## Kopie bezpieczeństwa
 
