@@ -37,6 +37,18 @@ UI jest przygotowane jako warstwa nad adapterami. Obecne dane demonstracyjne mog
 
 Sekrety i tokeny nie mogą znajdować się w repozytorium ani w kodzie przeglądarkowym.
 
+### Integration readiness
+
+Warstwa gotowości integracji jest rozdzielona na:
+
+- `integration-registry.js` — centralny rejestr konektorów i jawne stany `demo / ready / connected / error / disabled`,
+- `integration-readiness.js` — bezpieczne rozszerzenie widoku `Integracje`, lokalna walidacja registry i komunikaty stanu,
+- `integration-readiness.css` — responsywny układ kart gotowości.
+
+`Sprawdź gotowość` nie wykonuje requestów do zewnętrznych usług. Kontroluje wyłącznie spójność lokalnego rejestru adapterów i zapisuje czas ostatniej kontroli w `localStorage`.
+
+Status `Źródło aktywne` może być użyty wyłącznie dla źródła, które rzeczywiście ma aktywny charakter w aktualnej architekturze. Obecnie GitHub oznacza wersjonowaną migawkę, natomiast PrestaShop, Allegro, ERLI, DPD i n8n pozostają gotowe do przyszłej konfiguracji backendowej.
+
 ## Dane i stan
 
 - dane zamówień, klientów, produktów i agentów pozostają demonstracyjne,
@@ -47,6 +59,8 @@ Sekrety i tokeny nie mogą znajdować się w repozytorium ani w kodzie przegląd
 ## QA / dostępność
 
 Nowe widoki korzystają z istniejącej semantyki panelu, tabel przewijalnych poziomo oraz breakpointów dla tabletów i urządzeń mobilnych. Akcje są elementami `button`, pola filtrów są obsługiwane klawiaturą, a tekst statusów nie opiera się wyłącznie na kolorze.
+
+Warstwa integration readiness została sprawdzona statycznie oraz w headless Chromium przez Playwright: renderowanie stanów, akcja lokalnego sprawdzenia, fallback bez registry oraz responsywny układ 3/2/1 kolumna.
 
 ## Publikacja
 
