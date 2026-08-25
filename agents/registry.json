@@ -1,0 +1,62 @@
+{
+  "version": "1.0.0",
+  "project": "RaFish Ops / 7DEJV.os",
+  "orchestrator": "orchestrator",
+  "default_pipeline": [
+    "product-owner-architect",
+    "ux-ui-designer",
+    "fullstack-developer",
+    "content-writer",
+    "qa-tester"
+  ],
+  "agents": [
+    {
+      "id": "orchestrator",
+      "file": "agents/orchestrator.md",
+      "can_finalize": true,
+      "can_return_work": true
+    },
+    {
+      "id": "product-owner-architect",
+      "file": "agents/product-owner-architect.md",
+      "produces": "FEATURE_CONTRACT",
+      "next": "ux-ui-designer"
+    },
+    {
+      "id": "ux-ui-designer",
+      "file": "agents/ux-ui-designer.md",
+      "produces": "UI_SPEC",
+      "next": "fullstack-developer"
+    },
+    {
+      "id": "fullstack-developer",
+      "file": "agents/fullstack-developer.md",
+      "produces": "IMPLEMENTATION_REPORT",
+      "next": "content-writer"
+    },
+    {
+      "id": "content-writer",
+      "file": "agents/content-writer.md",
+      "produces": "CONTENT_PASS",
+      "next": "qa-tester"
+    },
+    {
+      "id": "qa-tester",
+      "file": "agents/qa-tester.md",
+      "produces": "QA_REPORT",
+      "next_on_pass": "orchestrator",
+      "can_return_to": [
+        "product-owner-architect",
+        "ux-ui-designer",
+        "fullstack-developer",
+        "content-writer"
+      ]
+    }
+  ],
+  "rules": {
+    "qa_required_for_functional_change": true,
+    "secrets_in_frontend_forbidden": true,
+    "fake_integrations_forbidden": true,
+    "user_instruction_has_highest_priority": true
+  }
+}
