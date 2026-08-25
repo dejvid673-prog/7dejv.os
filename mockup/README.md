@@ -1,135 +1,57 @@
-# 7DEJV.os — interaktywna makieta
+# RaFish Ops — interaktywny panel operacyjny
 
-Lekka makieta HTML/CSS/JavaScript bez backendu, bazy danych i rzeczywistych integracji.
+Frontend HTML/CSS/JavaScript przygotowany jako warstwa operacyjna 7DEJV.os. Dane biznesowe są nadal demonstracyjne, ale główne moduły mają już kompletne widoki i przepływy UI gotowe do podpięcia pod adaptery API.
 
-## Aktualizacja lokalnej kopii
-
-Jeżeli repozytorium znajduje się już na komputerze:
+## Uruchomienie lokalne
 
 ```powershell
 cd "$HOME\Desktop\7dejv.os"
 git pull
-```
-
-Po aktualizacji wykonaj w przeglądarce twarde odświeżenie:
-
-```text
-Ctrl + F5
-```
-
-## Uruchomienie
-
-```powershell
 python -m http.server 8080 --directory "$HOME\Desktop\7dejv.os\mockup"
 ```
 
-Następnie otwórz:
+Następnie otwórz `http://localhost:8080`.
 
-```text
-http://localhost:8080
-```
+## Moduły
 
-## Pliki makiety
+- Dashboard — KPI, alerty, otwarte karty, kolejka operacyjna.
+- Zamówienia + wysyłka — istniejący przepływ zamówień.
+- Pakowanie — istniejący przepływ kompletacji.
+- Wiadomości — wspólna kolejka Allegro / sklep / ERLI / e-mail, filtrowanie, statusy i akcje gotowe do adaptera API.
+- Mapa i trasy — widok operacyjny tras, plan kierowcy i makieta mapy pod przyszły provider map.
+- Produkty — katalog SKU, EAN, stany, rezerwacje, problemy i uruchamianie audytu.
+- Agenci — pięć ról: Product Owner / Architekt, UX/UI Designer, Full-Stack Developer, Content Writer, QA Tester oraz pipeline wdrożeniowy.
+- Integracje — GitHub jako źródło prawdy oraz statusy PrestaShop, Allegro, ERLI, DPD i n8n.
+- Ustawienia — podstawowa konfiguracja workspace i ustawienia lokalne.
 
-- `index.html` — główny szkielet,
-- `styles.css` — zaakceptowany podstawowy styl,
-- `app.js` — bazowe dane i interakcje etapu 1,
-- `prompt-alignment.css` — małe korekty zgodności z pierwotnym promptem,
-- `prompt-alignment.js` — demonstracyjny agent klienta, zgłoszenie klienta i ujednolicenie opisów,
-- `modules-extension.css` — układ pełnej nawigacji i ekranów startowych,
-- `modules-extension.js` — działająca nawigacja dodatkowych modułów,
-- `github-source-data.js` — wersjonowana migawka danych odczytanych z GitHub,
-- `github-source-runtime.js` — bezpiecznie osadza status źródła prawdy na dashboardzie,
-- `github-source.css` — widoki i status źródła prawdy,
-- `dashboard-personalization.css` — kolory, tryb edycji dashboardu, profile i okna dialogowe,
-- `dashboard-personalization.js` — ustawienia paneli, kolejność, profile użytkowników i logowanie demonstracyjne.
+## Architektura integracji
 
-## Główne moduły w lewym menu
+UI jest przygotowane jako warstwa nad adapterami. Obecne dane demonstracyjne mogą zostać podmienione kolejno na:
 
-- Dashboard,
-- Zamówienia + wysyłka,
-- Pakowanie,
-- Wiadomości,
-- Mapa i trasy,
-- Produkty,
-- Agenci,
-- Integracje,
-- Ustawienia.
+1. PrestaShop Webservice / REST,
+2. Allegro OAuth2 + REST,
+3. ERLI API,
+4. DPD API,
+5. n8n webhook / REST,
+6. backend autoryzacji i ról.
 
-Dashboard, Zamówienia + wysyłka i Pakowanie zawierają dotychczasowe interakcje. Pozostałe moduły mają działającą nawigację, podzakładki i lekkie ekrany startowe. Nie wykonują jeszcze funkcji biznesowych.
+Sekrety i tokeny nie mogą znajdować się w repozytorium ani w kodzie przeglądarkowym.
 
-## Personalizacja użytkownika
+## Dane i stan
 
-Przycisk `Układ` w górnym pasku pozwala:
+- dane zamówień, klientów, produktów i agentów pozostają demonstracyjne,
+- część preferencji użytkownika jest zapisywana w `localStorage`,
+- GitHub Source of Truth korzysta z wersjonowanej migawki,
+- moduły biznesowe nie wykonują jeszcze zewnętrznych operacji zapisu.
 
-- pokazywać i ukrywać panele dashboardu,
-- przełączać wyrazistą albo neutralną kolorystykę,
-- włączyć przeciąganie paneli,
-- zmieniać kolejność kafli i dużych paneli,
-- wybierać kolor poszczególnych elementów,
-- przywrócić domyślny układ danego profilu.
+## QA / dostępność
 
-Kliknięcie profilu użytkownika na dole lewego menu albo przycisku użytkownika u góry pozwala:
+Nowe widoki korzystają z istniejącej semantyki panelu, tabel przewijalnych poziomo oraz breakpointów dla tabletów i urządzeń mobilnych. Akcje są elementami `button`, pola filtrów są obsługiwane klawiaturą, a tekst statusów nie opiera się wyłącznie na kolorze.
 
-- przełączyć profil Administrator,
-- przełączyć profil Pakowanie,
-- przełączyć profil Obsługa klienta,
-- utworzyć własny profil demonstracyjny,
-- wykonać demonstracyjne wylogowanie.
+## Publikacja
 
-Ustawienia personalizacji są przechowywane w `localStorage` osobno dla każdego profilu. Nie jest to prawdziwe logowanie i nie istnieje kontrola uprawnień po stronie serwera.
+Kod źródłowy panelu znajduje się w katalogu `mockup/`. Docelowy adres publikacji Sites:
 
-## Elementy działające w interfejsie
+`https://rafish-ops.rafish-ai1998.chatgpt.site`
 
-- przełączanie wszystkich głównych modułów,
-- podzakładki aktualnego modułu,
-- otwieranie zamówień i zgłoszeń w kartach roboczych,
-- przełączanie, przypinanie i zamykanie kart,
-- zachowanie otwartych kart podczas nawigacji w bieżącej sesji,
-- zwijanie, wysuwanie i przypinanie panelu agentów,
-- wybór zgłoszenia i przejście do powiązanego zamówienia,
-- demonstracyjne zgłoszenie klienta przetworzone przez agenta,
-- filtrowanie kolejki według agentów,
-- otwarcie panelu pakowania,
-- demonstracyjne potwierdzanie produktów,
-- personalizacja widoczności, kolorów i kolejności paneli dashboardu,
-- przełączanie demonstracyjnych profili użytkowników.
-- podgląd aktualnej inwentaryzacji repozytoriów i rozbieżności źródła prawdy GitHub.
-
-## Źródło prawdy GitHub
-
-Widok `Integracje → Źródła prawdy` korzysta z migawki przygotowanej na podstawie
-pełnego odczytu listy repozytoriów i drzew gałęzi głównych konta GitHub.
-Migawka nie udaje połączenia na żywo: jej data jest zawsze widoczna w interfejsie.
-Zamówienia, klienci, przesyłki i aktywność agentów pozostają danymi demonstracyjnymi.
-
-## Kopie bezpieczeństwa
-
-Stan sprzed późniejszych korekt znajduje się w gałęzi:
-
-```text
-backup/stage-01-approved-ui-2026-07-26
-```
-
-Stan bezpośrednio przed dodaniem personalizacji użytkownika znajduje się w:
-
-```text
-backup/before-dashboard-personalization-2026-07-27
-```
-
-Instrukcja wcześniejszego przywracania:
-
-```text
-stages/stage-01-mockup/BACKUP.md
-```
-
-## Ograniczenia
-
-- dane biznesowe istnieją wyłącznie w pamięci przeglądarki,
-- karty robocze i proces pakowania wracają do stanu początkowego po odświeżeniu,
-- ustawienia dashboardu i profil demonstracyjny są zapisane tylko lokalnie w bieżącej przeglądarce,
-- nowe moduły są obecnie szkieletami do kolejnego projektowania,
-- brak komunikacji z PrestaShop, DPD, Gmailem i innymi usługami,
-- brak prawdziwego logowania, autoryzacji i ról serwerowych,
-- brak rzeczywistych operacji biznesowych,
-- komunikaty i działania agentów są demonstracyjne.
+Samo repozytorium nie przechowuje konfiguracji publikacji ani sekretów Sites.
